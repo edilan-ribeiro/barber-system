@@ -3,8 +3,13 @@ import { Header } from '../_components/Header'
 import { ptBR } from 'date-fns/locale/pt-BR'
 import { Search } from './_components/Search'
 import { Booking } from '../_components/Booking'
+import { db } from '../_lib/prisma'
+import { BarbershopsCard } from './_components/BarbershopsCard'
+import { Key } from 'react'
 
-export default function Home() {
+export default async function Home() {
+	const barbershops = await db.barbershop.findMany({})
+
 	return (
 		<div>
 			<Header />
@@ -21,8 +26,18 @@ export default function Home() {
 			</div>
 
 			<div className="px-5 mt-6">
-				<h2 className='text-xs uppercase text-gray-400 font-bold mb-3'>Agendamentos</h2>
-				<Booking/>
+				<h2 className="text-xs uppercase text-gray-400 font-bold mb-3">Agendamentos</h2>
+				<Booking />
+			</div>
+
+			<div className="mt-6">
+				<h2 className="px-5 text-xs uppercase text-gray-400 font-bold mb-3">Recomendados</h2>
+
+				<div className="px-5 flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+					{barbershops.map((barbershop: { id: Key | null | undefined }) => (
+						<BarbershopsCard key={barbershop.id} barbershop={barbershop} />
+					))}
+				</div>
 			</div>
 		</div>
 	)
