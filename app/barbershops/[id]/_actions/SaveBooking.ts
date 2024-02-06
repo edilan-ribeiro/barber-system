@@ -9,7 +9,7 @@ interface SaveBookingParams {
   date: Date;
 }
 
-export const SaveBooking = async (params: SaveBookingParams) => {
+export const saveBooking = async (params: SaveBookingParams) => {
   await db.booking.create({
     data: {
       serviceId: params.serviceId,
