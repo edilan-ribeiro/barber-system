@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import { Header } from '../_components/Header'
 import { ptBR } from 'date-fns/locale/pt-BR'
 import { Search } from './_components/Search'
-import { Booking } from '../_components/Booking'
+import { BookingItem } from '../_components/BookingItem'
 import { db } from '../_lib/prisma'
 import { BarbershopsCard } from './_components/BarbershopsCard'
 import { Key } from 'react'
@@ -25,10 +25,10 @@ export default async function Home() {
 				<Search />
 			</div>
 
-			<div className="px-5 mt-6">
+			{/* <div className="px-5 mt-6">
 				<h2 className="text-xs uppercase text-gray-400 font-bold mb-3">Agendamentos</h2>
-				<Booking />
-			</div>
+				<BookingItem />
+			</div> */}
 
 			<div className="mt-6">
 				<h2 className="px-5 text-xs uppercase text-gray-400 font-bold mb-3">Recomendados</h2>
