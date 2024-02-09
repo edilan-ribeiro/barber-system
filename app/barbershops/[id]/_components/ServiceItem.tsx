@@ -9,15 +9,15 @@ import { ptBR } from 'date-fns/locale/pt-BR'
 import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useEffect, useMemo, useState } from 'react'
-import { generateDayTimeList } from '../_helpers/Hours'
 import { format } from 'date-fns'
-import { saveBooking } from '../_actions/saveBooking'
 import { setHours } from 'date-fns/setHours'
 import { setMinutes } from 'date-fns/setMinutes'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { getDayBookings } from '../_actions/getDayBookings'
+import { generateDayTimeList } from '../_helpers/hour'
+import { saveBookings } from '../_actions/saveBookings'
 
 interface ServiceItemProps {
 	barbershop: Barbershop
@@ -76,7 +76,7 @@ export const ServiceItem = ({ service, isAuthenticated, barbershop }: ServiceIte
 
 			const newDate = setMinutes(setHours(date, dateHour), dateMinutes)
 
-			await saveBooking({
+			await saveBookings({
 				serviceId: service.id,
 				barbershopId: barbershop.id,
 				date: newDate,
