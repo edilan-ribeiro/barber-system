@@ -7,7 +7,7 @@ import { db } from '../_lib/prisma'
 import { BarbershopsCard } from './_components/BarbershopsCard'
 import { Key } from 'react'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../api/auth/[...nextauth]/route'
+import { authOptions } from '@/app/_lib/auth'
 
 export default async function Home() {
 	const session = await getServerSession(authOptions)

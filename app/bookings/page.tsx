@@ -1,10 +1,15 @@
 import { getServerSession } from 'next-auth'
 import { Header } from '../_components/Header'
-import { authOptions } from '../api/auth/[...nextauth]/route'
 import { redirect } from 'next/navigation'
 import { db } from '../_lib/prisma'
 import { BookingItem } from '../_components/BookingItem'
 import { Key } from 'react'
+import { Metadata } from 'next'
+import { authOptions } from '@/app/_lib/auth'
+
+export const metadata: Metadata = {
+	title: 'Agendamentos',
+}
 
 const BookingsPage = async () => {
 	const session = await getServerSession(authOptions)

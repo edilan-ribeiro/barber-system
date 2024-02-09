@@ -4,11 +4,17 @@ import BarbershopInfo from './_components/BarbershopInfo'
 import { ServiceItem } from './_components/ServiceItem'
 import { Key } from 'react'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { Metadata } from 'next'
+import { authOptions } from '@/app/_lib/auth'
+
+export const metadata: Metadata = {
+	title: 'Serviços disponíveis',
+}
 
 interface BarbershopDetailsProps {
 	params: Barbershop
 }
+
 
 const barbershopDetails = async ({ params }: BarbershopDetailsProps) => {
 	const session = await getServerSession(authOptions)
