@@ -10,11 +10,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
-	search: z.string({ required_error: 'Campo obrigatório.' }).min(1).trim(),
+	search: z.string({ required_error: 'Campo obrigatório.' }).min(1, 'Campo obrigatório.').trim(),
 })
 
 interface SearchProps {
-	defaultValues: z.infer<typeof formSchema>
+	defaultValues?: z.infer<typeof formSchema>
 }
 
 export const Search = ({ defaultValues }: SearchProps) => {
