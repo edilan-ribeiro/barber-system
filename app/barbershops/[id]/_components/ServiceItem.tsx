@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation'
 import { getDayBookings } from '../_actions/getDayBookings'
 import { generateDayTimeList } from '../_helpers/hour'
 import { saveBookings } from '../_actions/saveBookings'
+import BookingInfo from '@/app/_components/BookingInfo'
 
 interface ServiceItemProps {
 	barbershop: Barbershop
@@ -133,11 +134,11 @@ export const ServiceItem = ({ service, isAuthenticated, barbershop }: ServiceIte
 				<div className="flex gap-4 items-center w-full">
 					<div className="relative min-h-[110px] min-w-[110px] max-h-[110px] max-w-[110px]">
 						<Image
+							className="rounded-lg"
 							src={service.imageUrl}
 							fill
 							style={{ objectFit: 'contain' }}
 							alt={service.name}
-							className="rounded-lg"
 						/>
 					</div>
 
@@ -150,7 +151,7 @@ export const ServiceItem = ({ service, isAuthenticated, barbershop }: ServiceIte
 								{Intl.NumberFormat('pt-BR', {
 									style: 'currency',
 									currency: 'BRL',
-								}).format(service.price)}
+								}).format(Number(service.price))}
 							</p>
 							<Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
 								<SheetTrigger asChild>
@@ -203,8 +204,8 @@ export const ServiceItem = ({ service, isAuthenticated, barbershop }: ServiceIte
 												<Button
 													onClick={() => handleHourClick(time)}
 													variant={hour === time ? 'default' : 'outline'}
-													key={time}
 													className="rounded-full"
+													key={time}
 												>
 													{time}
 												</Button>
@@ -213,54 +214,24 @@ export const ServiceItem = ({ service, isAuthenticated, barbershop }: ServiceIte
 									)}
 
 									<div className="py-6 px-5 border-t border-solid border-secondary">
-										<Card>
-											<CardContent className="p-3 gap-3 flex flex-col">
-												<div className="flex justify-between">
-													<h2 className="font-bold text-sm">{service.name}</h2>
-													<h3 className="font-bold text-sm">
-														{Intl.NumberFormat('pt-BR', {
-															style: 'currency',
-															currency: 'BRL',
-														}).format(service.price)}
-													</h3>
-												</div>
-
-												{date && (
-													<div className="flex justify-between">
-														<h3 className="text-gray-400 text-sm">Data</h3>
-														<h4 className="text-sm">
-															{format(date, "dd 'de' MMMM", {
-																locale: ptBR,
-															})}
-														</h4>
-													</div>
-												)}
-
-												{hour && (
-													<div className="flex justify-between">
-														<h3 className="text-gray-400 text-sm">Horário</h3>
-														<h4 className="text-sm">{hour}</h4>
-													</div>
-												)}
-
-												<div className="flex justify-between">
-													<h3 className="text-gray-400 text-sm">Barbearia</h3>
-													<h4 className="text-sm">{barbershop.name}</h4>
-												</div>
-											</CardContent>
-										</Card>
-
-										<SheetFooter className="mt-6">
-											<Button
-												onClick={handleBookingSubmit}
-												className="px-5"
-												disabled={!hour || !date || submitIsLoading}
-											>
-												{submitIsLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-												Confirmar reserva
-											</Button>
-										</SheetFooter>
+										<BookingInfo
+											booking={{
+												barbershop: barbershop,
+												date:
+													date && hour
+														? setMinutes(setHours(date, Number(hour.split(':')[0])), Number(hour.split(':')[1]))
+														: undefined,
+												service: service,
+											}}
+										/>
 									</div>
+
+									<SheetFooter className="px-5">
+										<Button onClick={handleBookingSubmit} disabled={!hour || !date || submitIsLoading}>
+											{submitIsLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+											Confirmar reserva
+										</Button>
+									</SheetFooter>
 								</SheetContent>
 							</Sheet>
 						</div>
