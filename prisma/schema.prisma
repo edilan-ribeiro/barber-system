@@ -63,6 +63,14 @@ model Barbershop {
   imageUrl String
   bookings Booking[]
   services Service[]
+  phones   Phone[]
+}
+
+model Phone {
+  id           String     @id @default(uuid())
+  phone        Int
+  barbershopID String
+  barbershop   Barbershop @relation(fields: [barbershopID], references: [id])
 }
 
 model Booking {
