@@ -17,7 +17,7 @@ const BarberShopPhoneInfo = ({ phones }: BarberShopPhoneInfoProps) => {
   const handleClick = (phones: string) => {
     copyToClipboard(phones);
 
-    toast.success(`O número ${copiedText} foi copiado`);
+    toast.success(`O número ${phones} foi copiado`);
   };
 
   return (
