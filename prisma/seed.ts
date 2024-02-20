@@ -94,12 +94,28 @@ async function seedDatabase() {
       },
     ];
 
-    // Criar 10 barbearias com nomes e endereços fictícios
+    
+    // Telefones a serem adicionados
+    const phones = [
+      "11985219632",
+      "11876543210",
+      "11987654321",
+      "11765432109",
+      "11654321098",
+      "11543210987",
+      "11432109876",
+      "11321098765",
+      "11210987654",
+      "11098765432"
+  ]
+
+    // Criar 10 barbearias com nomes, endereços e telefones fictícios
     const barbershops = [];
     for (let i = 0; i < 10; i++) {
       const name = creativeNames[i];
       const address = addresses[i];
       const imageUrl = images[i];
+      const phone = phones[i]
 
       const barbershop = await prisma.barbershop.create({
         data: {
@@ -124,6 +140,17 @@ async function seedDatabase() {
           },
         });
       }
+
+      await prisma.phone.create({
+        data: {
+          phone,
+          barbershop: {
+            connect: {
+              id: barbershop.id,
+            },
+          },
+        },
+      });
 
       barbershops.push(barbershop);
     }
