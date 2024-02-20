@@ -68,7 +68,7 @@ model Barbershop {
 
 model Phone {
   id           String     @id @default(uuid())
-  phone        Int
+  phone        String
   barbershopID String
   barbershop   Barbershop @relation(fields: [barbershopID], references: [id])
 }
