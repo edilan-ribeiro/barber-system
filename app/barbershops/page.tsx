@@ -22,7 +22,13 @@ const BarberShopsPage = async ({ searchParams }: BarberShopsPageProps) => {
 				mode: 'insensitive',
 			},
 		},
+		include: {
+			phones: true
+		}
 	})
+
+	
+	
 
 	return (
 		<>
