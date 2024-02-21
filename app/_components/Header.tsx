@@ -20,7 +20,7 @@ export const Header = () => {
 								<MenuIcon size={16} />
 							</Button>
 						</SheetTrigger>
-						<SheetContent className="p-0">
+						<SheetContent className="p-0 w-[80%]">
 							<SideMenu />
 						</SheetContent>
 					</Sheet>

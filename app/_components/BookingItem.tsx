@@ -63,7 +63,6 @@ export const BookingItem = ({ booking }: BookingItemProps) => {
     }
   };
 
-
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -102,7 +101,7 @@ export const BookingItem = ({ booking }: BookingItemProps) => {
         </Card>
       </SheetTrigger>
 
-      <SheetContent className="px-0">
+      <SheetContent className="w-[80%] px-0">
         <SheetHeader className="border-b border-solid border-secondary px-5 pb-6 text-left">
           <SheetTitle>Informações da Reserva</SheetTitle>
         </SheetHeader>
@@ -143,11 +142,13 @@ export const BookingItem = ({ booking }: BookingItemProps) => {
           <BookingInfo booking={booking} />
 
           <>
-            {booking.barbershop.phones.map((phones: { id: Phone; phone: Phone }) => (
-              <div key={phones.id}>
-                <BarberShopPhoneInfo phones={phones.phone} />
-              </div>
-            ))}
+            {booking.barbershop.phones.map(
+              (phones: { id: Phone; phone: Phone }) => (
+                <div key={phones.id}>
+                  <BarberShopPhoneInfo phones={phones.phone} />
+                </div>
+              ),
+            )}
           </>
 
           <SheetFooter className="mt-6 flex-row gap-3">
