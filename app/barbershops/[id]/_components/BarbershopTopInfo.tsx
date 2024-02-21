@@ -8,11 +8,11 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import SideMenu from '@/app/_components/SideMenu'
 
-interface BarbershopInfoProps {
+interface BarbershopTopInfoProps {
 	barbershop: Barbershop
 }
 
-const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
+const BarbershopTopInfo = ({ barbershop }: BarbershopTopInfoProps) => {
 	const router = useRouter()
 
 	const handleBackClick = () => {
@@ -63,4 +63,4 @@ const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
 	)
 }
 
-export default BarbershopInfo
+export default BarbershopTopInfo
