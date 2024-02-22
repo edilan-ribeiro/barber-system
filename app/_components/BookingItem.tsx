@@ -95,7 +95,7 @@ export const BookingItem = ({ booking }: BookingItemProps) => {
                 })}
               </p>
               <p className="text-2xl">{format(booking.date, "dd")}</p>
-              <p className="text-sm">{format(booking.date, "hh:mm")}</p>
+              <p className="text-sm">{format(booking.date, "HH:mm")}</p>
             </div>
           </CardContent>
         </Card>
