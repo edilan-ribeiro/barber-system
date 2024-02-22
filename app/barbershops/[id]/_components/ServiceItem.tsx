@@ -128,6 +128,9 @@ export const ServiceItem = ({ service, isAuthenticated, barbershop }: ServiceIte
 		})
 	}, [date, dayBookings])
 
+
+	const disabledDays = { dayOfWeek: [1,  2] }
+
 	return (
 		<Card>
 			<CardContent className="p-3 w-full">
@@ -172,6 +175,7 @@ export const ServiceItem = ({ service, isAuthenticated, barbershop }: ServiceIte
 											onSelect={handleDateClick}
 											locale={ptBR}
 											fromDate={new Date()}
+											disabled={disabledDays}
 											styles={{
 												head_cell: {
 													width: '100',
