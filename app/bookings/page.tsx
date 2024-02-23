@@ -56,7 +56,7 @@ const BookingsPage = async () => {
 
   return (
     <>
-      <Header />
+      
 
       <div className="px-5 py-6">
         <h1 className="mb-6 text-xl font-bold">Agendamentos</h1>

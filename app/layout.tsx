@@ -4,6 +4,7 @@ import './globals.css'
 import { Footer } from './_components/Footer'
 import AuthProvider from './_providers/auth'
 import { Toaster } from './_components/ui/sonner'
+import { Header } from './_components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
 			<body className={`${inter.className} dark`}>
 				<AuthProvider>
 					<div className='flex-1'>
+					<Header />
 					{children}
 
 					</div>

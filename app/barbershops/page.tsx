@@ -32,7 +32,7 @@ const BarberShopsPage = async ({ searchParams }: BarberShopsPageProps) => {
 
 	return (
 		<>
-			<Header />
+			
 
 			<div className="px-5 py-6 flex flex-col gap-6">
 				<Search defaultValues={{ search: searchParams.search }} />

@@ -29,22 +29,7 @@ const BarbershopTopInfo = ({ barbershop }: BarbershopTopInfoProps) => {
         >
           <ChevronLeftIcon />
         </Button>
-
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              size="icon"
-              variant="outline"
-              className="absolute right-4 top-4 z-50"
-            >
-              <MenuIcon />
-            </Button>
-          </SheetTrigger>
-          <SheetContent className="p-0 w-[80%]">
-            <SideMenu />
-          </SheetContent>
-        </Sheet>
-
+        
         <Image
           src={barbershop.imageUrl}
           fill

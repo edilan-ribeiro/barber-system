@@ -36,7 +36,7 @@ export default async function Home() {
 
   return (
     <div>
-      <Header />
+      
       <div className="px-5 pt-5">
         <h2 className="text-xl font-bold">
           {session?.user
