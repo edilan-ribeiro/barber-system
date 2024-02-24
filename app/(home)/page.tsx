@@ -1,13 +1,13 @@
 import { format } from "date-fns";
-import { Header } from "../_components/Header";
 import { ptBR } from "date-fns/locale/pt-BR";
 import { Search } from "./_components/Search";
 import { BookingItem } from "../_components/BookingItem";
 import { db } from "../_lib/prisma";
-import { BarbershopsCard } from "./_components/BarbershopsCard";
 import { Key } from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/_lib/auth";
+import BarbershopsCardGroup from "./_components/BarbershopsCardGroup";
+import ExtraCardGroup from "./_components/ExtraCardGroup";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -26,17 +26,16 @@ export default async function Home() {
             service: true,
             barbershop: {
               include: {
-                phones: true
-              }
-            }
+                phones: true,
+              },
+            },
           },
         })
       : Promise.resolve([]),
   ]);
 
   return (
-    <div>
-      
+    <div className="lg:px-32">
       <div className="px-5 pt-5">
         <h2 className="text-xl font-bold">
           {session?.user
@@ -62,7 +61,7 @@ export default async function Home() {
             <div className="mt-6 flex gap-3 overflow-x-auto px-5 [&::-webkit-scrollbar]:hidden">
               {confirmedBookings.map(
                 (booking: { id: Key | null | undefined }) => (
-                  <BookingItem key={booking.id} booking={booking}/>
+                  <BookingItem key={booking.id} booking={booking} />
                 ),
               )}
             </div>
@@ -70,32 +69,10 @@ export default async function Home() {
         )}
       </div>
 
-      <div className="mt-6">
-        <h2 className="mb-3 px-5 text-xs font-bold uppercase text-gray-400">
-          Recomendados
-        </h2>
+      <BarbershopsCardGroup barbershops={barbershops} title="Recomendados" />
 
-        <div className="flex gap-4 overflow-x-auto px-5 [&::-webkit-scrollbar]:hidden">
-          {barbershops.map((barbershop: { id: Key | null | undefined }) => (
-            <div key={barbershop.id} className="max-w[167px] w-[167px]">
-              <BarbershopsCard barbershop={barbershop} />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="mb-[4.5rem] mt-6">
-        <h2 className="mb-3 px-5 text-xs font-bold uppercase text-gray-400">
-          Populares
-        </h2>
-
-        <div className="flex gap-4 overflow-x-auto px-5 [&::-webkit-scrollbar]:hidden">
-          {barbershops.map((barbershop: { id: Key | null | undefined }) => (
-            <div key={barbershop.id} className="max-w[167px] w-[167px]">
-              <BarbershopsCard barbershop={barbershop} />
-            </div>
-          ))}
-        </div>
+      <div className="mb-[4.5rem]">
+        <ExtraCardGroup barbershops={barbershops}/>
       </div>
     </div>
   );
