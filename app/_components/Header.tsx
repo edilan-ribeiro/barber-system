@@ -10,16 +10,16 @@ import Link from "next/link";
 import DesktopMenu from "./DesktopMenu";
 
 export const Header = () => {
-  const isDesktop = window.innerWidth < 1024;
+  const isMobile = window.innerWidth < 1024;
 
   return (
     <header>
-      <Card>
+      <Card className="lg:px-32">
         <CardContent className="flex flex-row items-center justify-between p-5 ">
           <Link href="/">
             <Image src="/logo.png" alt="FSW Barber" height={22} width={120} />
           </Link>
-          {isDesktop ? (
+          {isMobile ? (
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon" className="h-8 w-8">
@@ -31,7 +31,7 @@ export const Header = () => {
               </SheetContent>
             </Sheet>
           ) : (
-            <DesktopMenu/>
+            <DesktopMenu />
           )}
         </CardContent>
       </Card>

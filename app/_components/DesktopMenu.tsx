@@ -1,11 +1,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
-import {
-  LogOutIcon,
-  CalendarIcon,
-  CircleUser,
-} from "lucide-react";
+import { LogOutIcon, CalendarIcon, CircleUser } from "lucide-react";
 import Link from "next/link";
 
 const DesktopMenu = () => {
@@ -18,7 +14,7 @@ const DesktopMenu = () => {
   return (
     <>
       {data?.user ? (
-        <div className="mr-3 flex items-center justify-between px-5 py-6 gap-5">
+        <div className="flex items-center justify-between gap-5 px-5 py-6">
           <Button variant="outline" className="justify-start" asChild>
             <Link href="/bookings">
               <CalendarIcon size={18} className="mr-2" />
@@ -32,9 +28,9 @@ const DesktopMenu = () => {
             <h2 className="font-bold">{data.user.name}</h2>
           </div>
 
-          <Button variant="secondary"  onClick={handleLogoutClick} >
+          <Button variant="secondary" onClick={handleLogoutClick}>
             Sair
-            <LogOutIcon className="ml-3"/>
+            <LogOutIcon className="ml-3" />
           </Button>
         </div>
       ) : (
