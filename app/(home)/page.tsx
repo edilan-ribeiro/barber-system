@@ -1,13 +1,12 @@
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale/pt-BR";
 import { Search } from "./_components/Search";
-import { BookingItem } from "../_components/BookingItem";
 import { db } from "../_lib/prisma";
-import { Key } from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/_lib/auth";
 import BarbershopsCardGroup from "./_components/BarbershopsCardGroup";
 import ExtraCardGroup from "./_components/ExtraCardGroup";
+import ConfirmedBookings from "./_components/ConfirmedBookings";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -22,6 +21,9 @@ export default async function Home() {
               gte: new Date(),
             },
           },
+          orderBy: {
+            date: "asc",
+          },
           include: {
             service: true,
             barbershop: {
@@ -35,45 +37,44 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="lg:px-32">
-      <div className="px-5 pt-5">
-        <h2 className="text-xl font-bold">
-          {session?.user
-            ? `Olá, ${session.user.name?.split(" ")[0]}`
-            : "Olá! Vamos fazer o seu agendamento?"}
-        </h2>
-        <p className="text-sm capitalize">
-          {format(new Date(), "EEEE ',' dd 'de' MMMM", {
-            locale: ptBR,
-          })}
-        </p>
-      </div>
-      <div className="mt-6 px-5">
-        <Search />
-      </div>
-
-      <div className="mt-6">
-        {confirmedBookings.length > 0 && (
-          <>
-            <h2 className="mb-3 pl-5 text-xs font-bold uppercase text-gray-400">
-              Agendamentos
-            </h2>
-            <div className="mt-6 flex gap-3 overflow-x-auto px-5 [&::-webkit-scrollbar]:hidden">
-              {confirmedBookings.map(
-                (booking: { id: Key | null | undefined }) => (
-                  <BookingItem key={booking.id} booking={booking} />
-                ),
-              )}
+    <>
+      <section className="lg:bg-desktop-bg lg:bg-cover lg:bg-top lg:bg-no-repeat lg:pb-16">
+        <div className="lg:flex lg:gap-32 lg:overflow-hidden lg:px-32 ">
+          <div className="lg:flex lg:w-[35vw] lg:flex-col lg:overflow-hidden">
+            <div className="px-5 pt-5">
+              <h2 className="text-xl font-bold">
+                {session?.user
+                  ? `Olá, ${session.user.name?.split(" ")[0]}`
+                  : "Olá! Vamos fazer o seu agendamento?"}
+              </h2>
+              <p className="text-sm capitalize">
+                {format(new Date(), "EEEE ',' dd 'de' MMMM", {
+                  locale: ptBR,
+                })}
+              </p>
             </div>
-          </>
-        )}
-      </div>
 
-      <BarbershopsCardGroup barbershops={barbershops} title="Recomendados" />
+            <div className="mt-6 px-5">
+              <Search />
+            </div>
 
-      <div className="mb-[4.5rem]">
-        <ExtraCardGroup barbershops={barbershops}/>
-      </div>
-    </div>
+            <ConfirmedBookings bookings={confirmedBookings} />
+          </div>
+
+          <div className="lg:w-[50%]">
+            <BarbershopsCardGroup
+              barbershops={barbershops}
+              title="Recomendados"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="lg:px-32">
+        <div className="mb-[4.5rem]">
+          <ExtraCardGroup barbershops={barbershops} />
+        </div>
+      </section>
+    </>
   );
 }
