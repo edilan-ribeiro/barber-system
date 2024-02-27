@@ -8,14 +8,10 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import SideMenu from "./SideMenu";
 import Link from "next/link";
 import DesktopMenu from "./DesktopMenu";
-import { useEffect, useState } from "react";
+import useIsMobile from "./_helpers/useIsMobile";
 
 export const Header = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth <  1024);
-  }, [])
+  const isMobile = useIsMobile()
 
   return (
     <header>

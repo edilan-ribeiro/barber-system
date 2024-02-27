@@ -9,20 +9,16 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/app/_components/ui/carousel";
-import { title } from "process";
-import { Key, useEffect, useState } from "react";
+import { Key} from "react";
 import { BarbershopsCard } from "./BarbershopsCard";
+import useIsMobile from "@/app/_components/_helpers/useIsMobile";
 
 interface ExtraCardGroupProps {
   barbershops: Barbershop;
 }
 
 const ExtraCardGroup = ({ barbershops }: ExtraCardGroupProps) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth <  1024);
-  }, [])
+  const isMobile = useIsMobile()
 
   return (
     <div className="mb-[4.5rem]">

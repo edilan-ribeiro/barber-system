@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/app/_components/ui/carousel";
+import useIsMobile from "@/app/_components/_helpers/useIsMobile";
 
 interface BarbershopsCardGroupProps {
   barbershops: Barbershop;
@@ -20,11 +21,7 @@ const BarbershopsCardGroup = ({
   barbershops,
   title,
 }: BarbershopsCardGroupProps) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth <  1024);
-  }, [])
+  const isMobile = useIsMobile()
 
   return (
     <>
