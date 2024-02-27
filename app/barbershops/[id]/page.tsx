@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { Metadata } from "next";
 import { authOptions } from "@/app/_lib/auth";
 import InfoToggler from "./_components/InfoToggler";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Serviços disponíveis",
@@ -18,8 +19,7 @@ const barbershopDetails = async ({ params }: BarbershopDetailsProps) => {
   const session = await getServerSession(authOptions);
 
   if (!params.id) {
-    //TODO: redirecionar para home page
-    return null;
+    return redirect("/");
   }
 
   const barbershop = await db.barbershop.findUnique({
@@ -32,7 +32,7 @@ const barbershopDetails = async ({ params }: BarbershopDetailsProps) => {
   });
 
   if (!barbershop) {
-    return null;
+    return redirect("/");
   }
 
   return (
