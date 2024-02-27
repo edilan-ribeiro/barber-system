@@ -21,7 +21,7 @@ const BarberShopPhoneInfo = ({ phones }: BarberShopPhoneInfoProps) => {
   };
 
   return (
-    <div className="mt-8 flex items-center justify-between">
+    <div className="mt-8 flex items-center justify-between lg:mt-5">
       <div className="flex">
         <Smartphone className="mr-[10px]" />
         <p className="text-sm">{formatPhoneNumber(phones)}</p>

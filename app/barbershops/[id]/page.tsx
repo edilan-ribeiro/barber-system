@@ -1,11 +1,10 @@
 import { db } from "@/app/_lib/prisma";
 import { Barbershop } from "@prisma/client";
-import BarbershopTopInfo from "./_components/BarbershopTopInfo";
 import { getServerSession } from "next-auth";
 import { Metadata } from "next";
 import { authOptions } from "@/app/_lib/auth";
-import InfoToggler from "./_components/InfoToggler";
 import { redirect } from "next/navigation";
+import ResponsiveBarbershop from "./_components/ResponsiveBarbershop";
 
 export const metadata: Metadata = {
   title: "Serviços disponíveis",
@@ -28,6 +27,7 @@ const barbershopDetails = async ({ params }: BarbershopDetailsProps) => {
     },
     include: {
       services: true,
+      phones: true
     },
   });
 
@@ -35,13 +35,7 @@ const barbershopDetails = async ({ params }: BarbershopDetailsProps) => {
     return redirect("/");
   }
 
-  return (
-    <div>
-      <BarbershopTopInfo barbershop={barbershop} />
-
-      <InfoToggler barbershop={barbershop} session={session} />
-    </div>
-  );
+  return <ResponsiveBarbershop barbershop={barbershop} session={session} />;
 };
 
 export default barbershopDetails;
