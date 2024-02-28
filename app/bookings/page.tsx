@@ -26,6 +26,9 @@ const BookingsPage = async () => {
           gte: new Date(),
         },
       },
+      orderBy: {
+        date: "asc",
+      },
       include: {
         service: true,
         barbershop: {
@@ -43,6 +46,9 @@ const BookingsPage = async () => {
           lt: new Date(),
         },
       },
+      orderBy: {
+        date: "desc",
+      },
       include: {
         service: true,
         barbershop: {
@@ -56,8 +62,6 @@ const BookingsPage = async () => {
 
   return (
     <>
-      
-
       <div className="px-5 py-6">
         <h1 className="mb-6 text-xl font-bold">Agendamentos</h1>
 
