@@ -3,6 +3,17 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { LogOutIcon, CalendarIcon, CircleUser } from "lucide-react";
 import Link from "next/link";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./ui/alert-dialog";
 
 const DesktopMenu = () => {
   const { data } = useSession();
@@ -28,10 +39,34 @@ const DesktopMenu = () => {
             <h2 className="font-bold">{data.user.name}</h2>
           </div>
 
-          <Button variant="secondary" onClick={handleLogoutClick}>
-            Sair
-            <LogOutIcon className="ml-3" />
-          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="secondary">
+                Sair
+                <LogOutIcon className="ml-3" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="flex w-[400px] flex-col items-center">
+              <AlertDialogHeader>
+                <AlertDialogTitle className="text-center">
+                  Sair
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  Deseja sair da plataforma?
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="mr-2 w-[150px] uppercase">
+                  Cancelar
+                </AlertDialogCancel>
+                <AlertDialogAction className="w-[150px]" asChild>
+                  <Button variant="destructive" onClick={handleLogoutClick}>
+                    Sair
+                  </Button>
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       ) : (
         <div className="flex gap-3 px-5 py-6">
