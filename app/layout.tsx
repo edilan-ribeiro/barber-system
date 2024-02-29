@@ -19,11 +19,11 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning={true}>
 			<head>
 				<link rel="icon" href="/favicon.png" />
 			</head>
-			<body className={`${inter.className} dark`}>
+			<body className={`${inter.className} dark`} suppressHydrationWarning={true}>
 				<AuthProvider>
 					<div className='flex-1'>
 					<Header />
