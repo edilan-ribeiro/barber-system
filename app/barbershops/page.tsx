@@ -34,7 +34,7 @@ const BarberShopsPage = async ({ searchParams }: BarberShopsPageProps) => {
           Resultados para &quot;{searchParams.search}&quot;
         </h1>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8">
           {barbershops.map((barbershop: { id: Key | null | undefined }) => (
             <div className="w-full" key={barbershop.id}>
               <BarbershopsCard barbershop={barbershop} />
