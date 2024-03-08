@@ -36,3 +36,8 @@ yarn-error.log*
 next-env.d.ts
 
 .env
+prisma/migrations/migration_lock.toml
+prisma/migrations/20240202171026_add_initial_tables/migration.sql
+prisma/migrations/20240219015616_add_phone_table/migration.sql
+prisma/migrations/20240219155711_updated_phone_type/migration.sql
+prisma/migrations/20240220184838_updated_phone_type/migration.sql
