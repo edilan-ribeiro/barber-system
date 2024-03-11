@@ -2,9 +2,13 @@
 
 <div align="center">
 
-[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/edilan-ribeiro/barber-system/blob/main/README.md)
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/edilan-ribeiro/barber-system/blob/main/README.en.md)<br>
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+  <a href="https://github.com/edilan-ribeiro/barber-system/blob/main/README.md">
+    <img src="https://img.shields.io/badge/lang-pt--br-green.svg" alt="pt-br language"></a>
+  <a href="https://github.com/edilan-ribeiro/barber-system/blob/main/README.en.md">
+    <img src="https://img.shields.io/badge/lang-en-red.svg" alt="english language ">
+  </a> 
+
+<br> <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 </div>
 <br>
